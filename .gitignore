@@ -1,0 +1,59 @@
+# Data files (too large for git)
+data/*.csv
+data/*.dcm
+data/*.png
+data/rsna/
+data/nih/
+
+# Results (generated)
+results/*.csv
+results/*.pkl
+
+# Figures (generated)
+figures/*.png
+figures/*.pdf
+figures/*.svg
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Keep gitkeep files
+!.gitkeep
