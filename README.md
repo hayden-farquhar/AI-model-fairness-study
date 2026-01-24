@@ -1,7 +1,7 @@
 # Technical Acquisition Parameters Dominate Demographic Factors in Chest X-ray AI Performance Disparities
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
+[![DOI](https://img.shields.io/badge/DOI-10.64898%2F2026.01.20.26344495-blue)](https://doi.org/10.64898/2026.01.20.26344495)
 ## Overview
 
 This repository contains the analysis code for the study: **"Technical Acquisition Parameters Dominate Demographic Factors in Chest X-ray AI Performance Disparities: Evidence from Two Independent Datasets"**
@@ -119,7 +119,7 @@ If you use this code, please cite:
 ```
 Farquhar H. Technical Acquisition Parameters Dominate Demographic Factors 
 in Chest X-ray AI Performance Disparities: Evidence from Two Independent 
-Datasets. [Journal]. [Year];[Volume]:[Pages].
+Datasets. https://doi.org/10.64898/2026.01.20.26344495.
 ```
 
 ## License
