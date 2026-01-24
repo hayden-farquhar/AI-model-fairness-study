@@ -65,6 +65,10 @@ The datasets used in this study are publicly available:
    - Download: https://nihcc.app.box.com/v/ChestXray-NIHCC
    - Extract to `data/nih/`
 
+## Installation 
+
+Note that you must download the RSNA and NIH datasets separately (due to licensing/size) and place them in the data/ folder, as the scripts rely on this structure. 
+
 ## Models
 
 We evaluated five pre-trained DenseNet-121 models from the [torchxrayvision](https://github.com/mlmed/torchxrayvision) library:
