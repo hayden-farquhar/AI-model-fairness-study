@@ -24,7 +24,14 @@ cxr-ai-fairness/
 │   ├── 04_performance_disparity_analysis.py # Quantify factor contributions
 │   ├── 05_statistical_validation.py# Bootstrap CIs, permutation tests
 │   ├── 06_true_negative_analysis.py# Disease-free subgroup analysis
-│   └── 07_generate_figures.py      # Create publication figures
+│   ├── 07_generate_figures.py      # Create publication figures
+│   ├── 08_anova_decomposition.py   # Formal ANOVA + deviance decomposition
+│   ├── 09_cohens_d_expansion.py    # Cohen's d for all comparisons
+│   ├── 10_table1_split.py          # Demographics by AP/PA view type
+│   ├── 11_validation_framework.py  # Internal/external validation classification
+│   ├── 12_intersectional_analysis.py # Age × sex × view type interactions
+│   ├── 13_gradcam_analysis.py      # Grad-CAM saliency maps (AP vs PA)
+│   └── load_data_helper.py         # Shared data loading utilities
 ├── data/
 │   └── .gitkeep                    # Data not included (see Data Access)
 ├── figures/
@@ -99,6 +106,14 @@ python scripts/04_performance_disparity_analysis.py
 python scripts/05_statistical_validation.py
 python scripts/06_true_negative_analysis.py
 python scripts/07_generate_figures.py
+
+# Revision analyses (require prediction CSVs in data/predictions/)
+python scripts/08_anova_decomposition.py
+python scripts/09_cohens_d_expansion.py
+python scripts/10_table1_split.py
+python scripts/11_validation_framework.py
+python scripts/12_intersectional_analysis.py
+python scripts/13_gradcam_analysis.py  # Requires torch, torchxrayvision, DICOM images
 ```
 
 ## Key Findings
