@@ -11,7 +11,7 @@ This repository contains the analysis code for the study: **"Technical Acquisiti
 
 ## Abstract
 
-We conducted a multi-dataset external validation study analyzing 138,804 chest radiographs from two independent sources (RSNA Pneumonia Detection Challenge and NIH ChestX-ray14) to examine performance disparities in chest X-ray AI systems. View type dominated performance variance in both datasets (87% in RSNA, 69% in NIH), substantially exceeding demographic factors. All models demonstrated PA view underdiagnosis with miss rates of 30-78%. True negative analysis definitively refuted severity confounding.
+We conducted a multi-dataset external validation study analyzing 138,804 chest radiographs from two independent sources (RSNA Pneumonia Detection Challenge and NIH ChestX-ray14) to examine performance disparities in chest X-ray AI systems. View type dominated observed performance disparity in both datasets (87% in RSNA, 69% in NIH), substantially exceeding demographic factors. All models demonstrated PA view underdiagnosis with miss rates of 30-78%. True negative analysis definitively refuted severity confounding.
 
 ## Repository Structure
 
@@ -21,7 +21,7 @@ cxr-ai-fairness/
 │   ├── 01_data_preparation.py      # Load and preprocess datasets
 │   ├── 02_model_inference.py       # Run inference with torchxrayvision models
 │   ├── 03_performance_analysis.py  # Calculate sensitivity, specificity, AUC
-│   ├── 04_variance_decomposition.py# Quantify factor contributions
+│   ├── 04_performance_disparity_analysis.py # Quantify factor contributions
 │   ├── 05_statistical_validation.py# Bootstrap CIs, permutation tests
 │   ├── 06_true_negative_analysis.py# Disease-free subgroup analysis
 │   └── 07_generate_figures.py      # Create publication figures
@@ -83,8 +83,8 @@ We evaluated five pre-trained DenseNet-121 models from the [torchxrayvision](htt
 
 ```bash
 # Clone repository
-git clone https://github.com/[username]/cxr-ai-fairness.git
-cd cxr-ai-fairness
+git clone https://github.com/hayden-farquhar/AI-model-fairness-study.git
+cd AI-model-fairness-study
 
 # Install dependencies
 pip install -r requirements.txt
@@ -95,7 +95,7 @@ pip install -r requirements.txt
 python scripts/01_data_preparation.py
 python scripts/02_model_inference.py
 python scripts/03_performance_analysis.py
-python scripts/04_variance_decomposition.py
+python scripts/04_performance_disparity_analysis.py
 python scripts/05_statistical_validation.py
 python scripts/06_true_negative_analysis.py
 python scripts/07_generate_figures.py
@@ -103,14 +103,15 @@ python scripts/07_generate_figures.py
 
 ## Key Findings
 
-| Dataset | View Dominance | PA Miss Rate | OR (PA vs AP) |
-|---------|---------------|--------------|---------------|
-| RSNA    | 87%           | 43%          | 6.69          |
-| NIH     | 69%           | 78%          | 13.02         |
+| Dataset | View Dominance | PA Miss Rate | OR (PA vs AP) | ANOVA η² (view type) |
+|---------|---------------|--------------|---------------|---------------------|
+| RSNA    | 87%           | 43%          | 6.69          | 0.10-0.39           |
+| NIH     | 69%           | 78%          | 13.02         | —                   |
 
-- View type explained 69-87% of performance variance vs 1-30% for demographics
-- True negative analysis (n=131,361) showed large effect sizes (d=1.19-1.33), refuting severity confounding
-- 100% replication across 10 model-dataset combinations
+- View type accounted for 65-87% of total observed performance disparity vs 1-30% for demographics
+- Formal ANOVA confirmed view type as dominant factor (η²=0.10-0.39, p<0.001 across all models)
+- Disease-free subgroup analysis (n=131,361) showed large effect sizes (d=1.19-1.33), refuting severity confounding
+- 100% replication across 10 model-dataset combinations including 7 external validation pairs
 
 ## Citation
 

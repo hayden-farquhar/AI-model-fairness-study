@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-04_variance_decomposition.py
+04_performance_disparity_analysis.py
 
-Quantify the contribution of view type, age, and sex to performance variation.
+Quantify the contribution of view type, age, and sex to performance disparity.
 
 Author: Hayden Farquhar, MBBS MPHTM
 """
@@ -14,9 +14,9 @@ from pathlib import Path
 RESULTS_DIR = Path("results")
 
 
-def calculate_variance_contribution(metrics_df: pd.DataFrame, model: str, dataset: str) -> dict:
+def calculate_disparity_contribution(metrics_df: pd.DataFrame, model: str, dataset: str) -> dict:
     """
-    Calculate variance decomposition for a model-dataset combination.
+    Calculate performance disparity analysis for a model-dataset combination.
     
     Measures the proportion of total sensitivity range explained by each factor.
     """
@@ -50,7 +50,7 @@ def calculate_variance_contribution(metrics_df: pd.DataFrame, model: str, datase
     contributions["model"] = model
     contributions["dataset"] = dataset
     
-    # View dominance = % of variance explained by view type
+    # View dominance = % of disparity attributable to view type
     if total_range > 0:
         contributions["view_dominance"] = ranges.get("view_type", 0) / total_range
     else:
@@ -60,7 +60,7 @@ def calculate_variance_contribution(metrics_df: pd.DataFrame, model: str, datase
 
 
 def main():
-    """Main variance decomposition analysis."""
+    """Main performance disparity analysis analysis."""
     
     # Load performance metrics
     metrics_df = pd.read_csv(RESULTS_DIR / "performance_metrics.csv")
@@ -80,7 +80,7 @@ def main():
         if len(subset) <= 1:
             continue
         
-        contrib = calculate_variance_contribution(metrics_df, model, dataset)
+        contrib = calculate_disparity_contribution(metrics_df, model, dataset)
         results.append(contrib)
         
         print(f"\n=== {dataset} - {model} ===")
@@ -91,7 +91,7 @@ def main():
     
     # Save results
     results_df = pd.DataFrame(results)
-    results_df.to_csv(RESULTS_DIR / "variance_decomposition.csv", index=False)
+    results_df.to_csv(RESULTS_DIR / "performance_disparity_analysis.csv", index=False)
     
     # Summary statistics
     print("\n=== Summary Across All Models ===")
@@ -101,7 +101,7 @@ def main():
         print(f"  Mean view dominance: {subset['view_dominance'].mean()*100:.0f}%")
         print(f"  Range: {subset['view_dominance'].min()*100:.0f}% - {subset['view_dominance'].max()*100:.0f}%")
     
-    print(f"\nVariance decomposition saved: {RESULTS_DIR / 'variance_decomposition.csv'}")
+    print(f"\nPerformance disparity analysis saved: {RESULTS_DIR / 'performance_disparity_analysis.csv'}")
 
 
 if __name__ == "__main__":
